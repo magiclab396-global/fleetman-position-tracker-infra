@@ -41,7 +41,10 @@ pipeline {
 
       stage('Deploy to Cluster') {
           steps {
-                    sh 'envsubst < ${WORKSPACE}/deploy.yaml | kubectl apply -f -'
+             withKubeConfig([credentialsId: 'credentialsId', serverUrl: 'https://1AD8F256A49D88C34592D0CB82C22EB7.gr7.ap-southeast-1.eks.amazonaws.com']){
+                sh 'envsubst < ${WORKSPACE}/deploy.yaml | kubectl apply -f -'
+             }
+                    
           }
       }
    }
