@@ -26,13 +26,16 @@ pipeline {
       stage('Build and Push Image') {
          steps {
            // sh 'docker image build -t ${REPOSITORY_TAG} .'
-            sh '''  
-               echo `Build image ...`
-               docker image build -t ${REPOSITORY_TAG} .
-               echo `Push image ...`
-               docker push ${REPOSITORY_TAG}
-               echo `Done pushing image ...`
-            '''
+            withDockerRegistry([ credentialsId: "DockerHub", url: "" ]){
+               sh '''  
+                  echo `Build image ...`
+                  docker image build -t ${REPOSITORY_TAG} .
+                  echo `Push image ...`
+                  docker push ${REPOSITORY_TAG}
+                  echo `Done pushing image ...`
+               '''
+            }
+           
          }
       }
 
