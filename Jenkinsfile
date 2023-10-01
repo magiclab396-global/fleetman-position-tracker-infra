@@ -30,7 +30,7 @@ pipeline {
                echo `Build image ...`
                docker image build -t ${REPOSITORY_TAG} .
                echo `Push image ...`
-               docker push ${REPOSITORY_TAG} .
+               docker push ${REPOSITORY_TAG}
                echo `Done pushing image ...`
             '''
          }
