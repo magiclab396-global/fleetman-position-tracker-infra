@@ -14,7 +14,8 @@ spec:
     spec:
       containers:
       - name: position-tracker
-        image: ${REPOSITORY_TAG}
+        # image: ${REPOSITORY_TAG}
+        image: position-tracker-image
         env:
         - name: SPRING_PROFILES_ACTIVE
           value: production-microservice
