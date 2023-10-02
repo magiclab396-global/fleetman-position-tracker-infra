@@ -32,7 +32,7 @@ pipeline {
                   docker image build -t ${REPOSITORY_TAG} .
                   echo `Push image ...`
                   docker push ${REPOSITORY_TAG}
-                  echo `Done pushing image ...`
+                  echo `Done pushing image ..11..`
                '''
             }
            
