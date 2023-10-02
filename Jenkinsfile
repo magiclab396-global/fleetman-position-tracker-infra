@@ -41,7 +41,7 @@ pipeline {
 
       stage('Deploy to Cluster') {
           steps {
-             withKubeConfig([credentialsId: 'K8sSaToken', serverUrl: ${K8S_API_ENDPOINT}]){
+             withKubeConfig([credentialsId: 'K8sSaToken', serverUrl: "${K8S_API_ENDPOINT}"]){
                 sh 'envsubst < ${WORKSPACE}/deploy.yaml | kubectl apply -f -'
              }
           }
