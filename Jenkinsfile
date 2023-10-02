@@ -44,8 +44,8 @@ pipeline {
              withKubeConfig([credentialsId: 'K8sSaToken', serverUrl: "${K8S_API_ENDPOINT}"]){
                 // sh 'envsubst < ${WORKSPACE}/deploy.yaml | kubectl apply -f -'
                 sh '''  
-                   def text = readFile file: "values.yaml"
-                   text = text.replaceAll("%tag%", "${${REPOSITORY_TAG}}") 
+                   def text = readFile file: "kustomization.yaml"
+                   text = text.replaceAll("/(?m)^newTag:.*$/", "newTag:${BUILD_ID}") 
                    export BUILD_ID=${BUILD_ID}
                    git add . -m "Update app image tag to ${BUILD_ID}"
                    git push origin master
