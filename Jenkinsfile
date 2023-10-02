@@ -42,7 +42,14 @@ pipeline {
       stage('Deploy to Cluster') {
           steps {
              withKubeConfig([credentialsId: 'K8sSaToken', serverUrl: "${K8S_API_ENDPOINT}"]){
-                sh 'envsubst < ${WORKSPACE}/deploy.yaml | kubectl apply -f -'
+                // sh 'envsubst < ${WORKSPACE}/deploy.yaml | kubectl apply -f -'
+                sh '''  
+                   def text = readFile file: "values.yaml"
+                   text = text.replaceAll("%tag%", "${${REPOSITORY_TAG}}") 
+                   export BUILD_ID=${BUILD_ID}
+                   git add . -m "Update app image tag to ${BUILD_ID}"
+                   git push origin master
+                '''
              }
           }
       }
