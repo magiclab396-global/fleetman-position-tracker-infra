@@ -1,5 +1,5 @@
 resources:
-- deployment.yaml
+- deploy.yaml
 images:
 - name: nginx
   newName: my.image.registry/nginx
