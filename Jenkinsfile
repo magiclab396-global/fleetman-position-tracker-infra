@@ -77,7 +77,15 @@ pipeline {
                      filePath: 'kustomization.yaml'
                    )
                  ]
-)
+            )
+
+            script{
+                sh '''  
+                   export BUILD_ID=${BUILD_ID}
+                   git add . -m "Update app image tag to ${BUILD_ID}"
+                   git push origin master
+                '''
+               }
           }
       }
    }
