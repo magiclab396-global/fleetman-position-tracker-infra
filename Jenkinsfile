@@ -41,15 +41,17 @@ pipeline {
 
       stage('Deploy to Cluster') {
           steps {
-             withKubeConfig([credentialsId: 'K8sSaToken', serverUrl: "${K8S_API_ENDPOINT}"]){
-                // sh 'envsubst < ${WORKSPACE}/deploy.yaml | kubectl apply -f -'
-                //def agentLabel
-               // if (BRANCH_NAME =~ /^(staging|master)$/)  {
-               //     agentLabel = "prod"
-               // } else {
-               //     agentLabel = "master"
-               // }
-               script{
+             // withKubeConfig([credentialsId: 'K8sSaToken', serverUrl: "${K8S_API_ENDPOINT}"]){
+             //    // sh 'envsubst < ${WORKSPACE}/deploy.yaml | kubectl apply -f -'
+             //    //def agentLabel
+             //   // if (BRANCH_NAME =~ /^(staging|master)$/)  {
+             //   //     agentLabel = "prod"
+             //   // } else {
+             //   //     agentLabel = "master"
+             //   // } 
+             // }
+
+             script{
                 sh '''  
                    def text = readFile file: "kustomization.yaml"
                    text = text.replaceAll("/(?m)^newTag:.*$/", "newTag:${BUILD_ID}") 
@@ -58,7 +60,6 @@ pipeline {
                    git push origin master
                 '''
                }
-             }
           }
       }
    }
