@@ -101,7 +101,8 @@ pipeline {
                          git config user.name jenkins
                          export BUILD_ID=${BUILD_ID}
                          git add . && git commit -m "Update app image tag to ${BUILD_ID}"
-                         git push origin master
+                         // git push origin master
+                         git push https://${GIT_USERNAME}:${encodedPassword}@github.com/magiclab396-global/fleetman-position-tracker.git
                       '''
                      // sh "git config user.email truongpx396@gmail.com"
                      // sh "git config user.name jenkins"
