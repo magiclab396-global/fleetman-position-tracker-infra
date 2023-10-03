@@ -79,12 +79,32 @@ pipeline {
                  ]
             )
 
-            script{
-                sh '''  
-                   export BUILD_ID=${BUILD_ID}
-                   git add . && git commit -m "Update app image tag to ${BUILD_ID}"
-                   git push origin master
-                '''
+            // script{
+            //     sh '''  
+            //        export BUILD_ID=${BUILD_ID}
+            //        git add . && git commit -m "Update app image tag to ${BUILD_ID}"
+            //        git push origin master
+            //     '''
+            //    }
+
+             script {
+               catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                 withCredentials([usernamePassword(credentialsId: 'example-secure', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
+                     def encodedPassword = URLEncoder.encode("$GIT_PASSWORD",'UTF-8')
+
+                      sh '''  
+                         git config user.email truongpx396@gmail.com
+                         git config user.name jenkins
+                         export BUILD_ID=${BUILD_ID}
+                         git add . && git commit -m "Update app image tag to ${BUILD_ID}"
+                         git push origin master
+                      '''
+                     // sh "git config user.email truongpx396@gmail.com"
+                     // sh "git config user.name jenkins"
+                     // sh "git add ."
+                     // sh "git commit -m 'Triggered Build: ${env.BUILD_NUMBER}'"
+                     // sh "git push https://${GIT_USERNAME}:${encodedPassword}@github.com/${GIT_USERNAME}/example.git"
+                 }
                }
           }
       }
