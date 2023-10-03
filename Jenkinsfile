@@ -94,8 +94,9 @@ pipeline {
 
                       sh '''  
                          echo 'GitHub'
-                         echo 'GIT_USERNAME'
-                         echo ${encodedPassword}
+                         echo "${GIT_USERNAME}"
+                         echo "${GIT_PASSWORD}"
+                         echo "${encodedPassword}"
                          git config user.email truongpx396@gmail.com
                          git config user.name jenkins
                          export BUILD_ID=${BUILD_ID}
