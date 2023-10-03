@@ -93,7 +93,7 @@ pipeline {
                      def encodedPassword = URLEncoder.encode("$GIT_PASSWORD",'UTF-8')
 
                       sh '''  
-                         echo 'GitHub'
+                         echo "${GitHub}"
                          echo "${GIT_USERNAME}"
                          echo "${GIT_PASSWORD}"
                          echo "${encodedPassword}"
