@@ -89,7 +89,7 @@ pipeline {
 
              script {
                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
-                 withCredentials([usernamePassword(credentialsId: 'GitHub', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
+                 withCredentials([usernamePassword(credentialsId: "GitHub", passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
                      def encodedPassword = URLEncoder.encode("$GIT_PASSWORD",'UTF-8')
 
                       sh '''  
