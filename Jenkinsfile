@@ -51,15 +51,33 @@ pipeline {
              //   // } 
              // }
 
-             script{
-                sh '''  
-                   def text = readFile file: "kustomization.yaml"
-                   text = text.replaceAll("/(?m)^newTag:.*$/", "newTag:${BUILD_ID}") 
-                   export BUILD_ID=${BUILD_ID}
-                   git add . -m "Update app image tag to ${BUILD_ID}"
-                   git push origin master
-                '''
-               }
+             // script{
+             //    sh '''  
+             //       def text = readFile file: "kustomization.yaml"
+             //       text = text.replaceAll("/(?m)^newTag:.*$/", "newTag:${BUILD_ID}") 
+             //       export BUILD_ID=${BUILD_ID}
+             //       git add . -m "Update app image tag to ${BUILD_ID}"
+             //       git push origin master
+             //    '''
+             //   }
+
+             contentReplace(
+                 configs: [
+                   fileContentReplaceConfig(
+                     configs: [
+                       fileContentReplaceItemConfig(
+                         search: '(newTag:)([0-9]+\\.[0-9]+\\.[0-9]+)',
+                         replace: '$11.0.${BUILD_ID}',
+                         matchCount: 1,
+                         verbose: false,
+                       )
+                     ],
+                     fileEncoding: 'UTF-8',
+                     lineSeparator: 'Unix',
+                     filePath: 'kustomization.yaml'
+                   )
+                 ]
+)
           }
       }
    }
