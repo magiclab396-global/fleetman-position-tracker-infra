@@ -87,31 +87,31 @@ pipeline {
             //     '''
             //    }
 
-             script {
-               catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
-                 withCredentials([usernamePassword(credentialsId: "GitHub", passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
-                     def encodedPassword = URLEncoder.encode("$GIT_PASSWORD",'UTF-8')
+             // script {
+             //   catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+             //     withCredentials([usernamePassword(credentialsId: "GitHub", passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
+             //         def encodedPassword = URLEncoder.encode("$GIT_PASSWORD",'UTF-8')
 
-                      sh '''  
-                         echo "${GitHub}"
-                         echo "${GIT_USERNAME}"
-                         echo "${GIT_PASSWORD}"
-                         echo "${encodedPassword}"
-                         git config user.email truongpx396@gmail.com
-                         git config user.name jenkins
-                         export BUILD_ID=${BUILD_ID}
-                         git add . && git commit -m "Update app image tag to ${BUILD_ID}"
-                         // git push origin master
-                         git push https://${GIT_USERNAME}:${encodedPassword}@github.com/magiclab396-global/fleetman-position-tracker.git
-                      '''
-                     // sh "git config user.email truongpx396@gmail.com"
-                     // sh "git config user.name jenkins"
-                     // sh "git add ."
-                     // sh "git commit -m 'Triggered Build: ${env.BUILD_NUMBER}'"
-                     // sh "git push https://${GIT_USERNAME}:${encodedPassword}@github.com/${GIT_USERNAME}/example.git"
-                 }
-               }
-             }
+             //          sh '''  
+             //             echo "${GitHub}"
+             //             echo "${GIT_USERNAME}"
+             //             echo "${GIT_PASSWORD}"
+             //             echo "${encodedPassword}"
+             //             git config user.email truongpx396@gmail.com
+             //             git config user.name jenkins
+             //             export BUILD_ID=${BUILD_ID}
+             //             git add . && git commit -m "Update app image tag to ${BUILD_ID}"
+             //             // git push origin master
+             //             git push https://${GIT_USERNAME}:${encodedPassword}@github.com/magiclab396-global/fleetman-position-tracker.git
+             //          '''
+             //         // sh "git config user.email truongpx396@gmail.com"
+             //         // sh "git config user.name jenkins"
+             //         // sh "git add ."
+             //         // sh "git commit -m 'Triggered Build: ${env.BUILD_NUMBER}'"
+             //         // sh "git push https://${GIT_USERNAME}:${encodedPassword}@github.com/${GIT_USERNAME}/example.git"
+             //     }
+             //   }
+             // }
 
             script {
                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
