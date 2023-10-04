@@ -117,8 +117,10 @@ pipeline {
                
                   withCredentials([string(credentialsId: 'GitHub1', variable: 'GITHUB_TOKEN')]) {
                       sh '''
+                          echo "${GITHUB_TOKEN}"
                           export BUILD_ID=${BUILD_ID}
                           git add kustomization.yaml && git commit -m "Update app image tag to ${BUILD_ID}"
+                          git push https://${GITHUB_TOKEN}@github.com/magiclab396-global/fleetman-position-tracker.git 
                       '''
                   }
           }
