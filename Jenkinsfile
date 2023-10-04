@@ -117,8 +117,6 @@ pipeline {
                
                   withCredentials([string(credentialsId: 'GitHub1', variable: 'GITHUB_TOKEN')]) {
                       sh '''
-                          // git config user.email "abhishek.xyz@gmail.com"
-                          // git config user.name "Abhishek Veeramalla"
                           // git config user.email "truongpx396@gmail.com"
                           // git config user.name "jenkins"
                           // BUILD_NUMBER=${BUILD_NUMBER}
