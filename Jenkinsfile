@@ -117,7 +117,8 @@ pipeline {
                
                   withCredentials([string(credentialsId: 'GitHub1', variable: 'GITHUB_TOKEN')]) {
                       sh '''
-                         
+                          export BUILD_ID=${BUILD_ID}
+                          git add kustomization.yaml && git commit -m "Update app image tag to ${BUILD_ID}"
                       '''
                   }
           }
