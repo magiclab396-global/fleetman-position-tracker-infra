@@ -110,6 +110,7 @@ pipeline {
                      // sh "git commit -m 'Triggered Build: ${env.BUILD_NUMBER}'"
                      // sh "git push https://${GIT_USERNAME}:${encodedPassword}@github.com/${GIT_USERNAME}/example.git"
                  }
+               }
 
             script {
                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
@@ -130,7 +131,7 @@ pipeline {
                       '''
                   }
                }
-            }
+            
           }
       }
    }
