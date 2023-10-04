@@ -119,8 +119,8 @@ pipeline {
                       sh '''
                           // git config user.email "abhishek.xyz@gmail.com"
                           // git config user.name "Abhishek Veeramalla"
-                          git config user.email "truongpx396@gmail.com"
-                          git config user.name "jenkins"
+                          // git config user.email "truongpx396@gmail.com"
+                          // git config user.name "jenkins"
                           // BUILD_NUMBER=${BUILD_NUMBER}
                           // sed -i "s/replaceImageTag/${BUILD_NUMBER}/g" java-maven-sonar-argocd-helm-k8s/spring-boot-app-manifests/deployment.yml
                           // git add java-maven-sonar-argocd-helm-k8s/spring-boot-app-manifests/deployment.yml
