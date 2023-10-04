@@ -67,7 +67,7 @@ pipeline {
                      configs: [
                        fileContentReplaceItemConfig(
                          search: '(newTag: )([0-9]+)',
-                         replace: '${BUILD_ID}',
+                         replace: 'newTag: ${BUILD_ID}',
                          matchCount: 1,
                          verbose: false,
                        )
