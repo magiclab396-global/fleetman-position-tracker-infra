@@ -117,16 +117,7 @@ pipeline {
                
                   withCredentials([string(credentialsId: 'GitHub1', variable: 'GITHUB_TOKEN')]) {
                       sh '''
-                          // git config user.email "truongpx396@gmail.com"
-                          // git config user.name "jenkins"
-                          // BUILD_NUMBER=${BUILD_NUMBER}
-                          // sed -i "s/replaceImageTag/${BUILD_NUMBER}/g" java-maven-sonar-argocd-helm-k8s/spring-boot-app-manifests/deployment.yml
-                          // git add java-maven-sonar-argocd-helm-k8s/spring-boot-app-manifests/deployment.yml
-                          // git commit -m "Update deployment image to version ${BUILD_NUMBER}"
-                          // export BUILD_ID=${BUILD_ID}
-                          // git add kustomization.yaml && git commit -m "Update app image tag to ${BUILD_ID}"
-                          // git push https://${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME} HEAD:main
-                          // git push https://${GITHUB_TOKEN}@github.com/magiclab396-global/fleetman-position-tracker.git HEAD:master
+                         
                       '''
                   }
           }
