@@ -111,6 +111,7 @@ pipeline {
                      // sh "git push https://${GIT_USERNAME}:${encodedPassword}@github.com/${GIT_USERNAME}/example.git"
                  }
                }
+             }
 
             script {
                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
