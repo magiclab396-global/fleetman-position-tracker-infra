@@ -4,5 +4,5 @@ resources:
 - deploy.yaml
 images:
 - name: position-tracker-image
-  newName: magiclab396-global-fleetman-position-tracker
+  newName: truongpx396/magiclab396-global-fleetman-position-tracker
   newTag: '163'
