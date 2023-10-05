@@ -5,4 +5,4 @@ resources:
 images:
 - name: position-tracker-image
   newName: magiclab396-global-fleetman-position-tracker
-  newTag: 163
+  newTag: '163'
